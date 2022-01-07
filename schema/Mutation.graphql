@@ -2,4 +2,8 @@ type Mutation {
   novoUsuario(dados: UsuarioInput!): Usuario
   excluirUsuario(filtro: UsuarioFiltro!): Usuario
   alteraUsuario(filtro: UsuarioFiltro!, dados: UsuarioInput!): Usuario
+
+  novoPerfil(nome: String): Perfil
+  excluirPerfil(id: Int!): Perfil
+  alteraPerfil(id: Int!, nome: String): Perfil
 }
