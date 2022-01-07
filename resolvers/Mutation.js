@@ -36,15 +36,25 @@ module.exports = {
     return excluidos ? excluidos[0] : null;
   },
 
-  alteraUsuario(_, args) {
-    const i = usuarios.findIndex((u) => u.id === args.id);
-
+  alteraUsuario(_, { filtro, dados }) {
+    const i = indiceUsuario(filtro);
     if (i < 0) return null;
 
     const usuario = {
       ...usuarios[i],
-      ...args,
+      ...filtro,
+      ...dados,
     };
+
+    delete filtro;
+    delete dados;
+    //Uma outra maneira de resolver o desafio
+    // usuarios[i].nome = dados.nome;
+    // usuarios[i].email = dados.email;
+    // if (dados.idade) {
+    //   usuarios[i].idade = dados.idade;
+    // }
+    // return usuarios[i]
 
     usuarios.splice(i, 1, usuario);
     return usuario;
